@@ -33,7 +33,8 @@ const Auth = () => {
                         :
                             <div>
                                 Есть аккаунт?
-                                <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
+                                <NavLink
+                                    to={LOGIN_ROUTE}>Войдите!</NavLink>
                             </div>
                         }
                     </Row>
