@@ -1,27 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/Big_star.png'
+import {useParams} from 'react-router-dom'
+import {observer} from "mobx-react-lite";
+import {fetchOneDevices } from "../http/deviceAPI";
 
-const DevicePage = () => {
-    const device = {id: 1,
-        name: "Iphone 12 pro",
-        price: 35000,
-        rating: 5,
-        Img: 'http://localhost:5000/95ccd4d0-dfb8-4b3c-abbf-a38906c77eb1.jpg'
-    }
-    const description = [
-        {id: 1, title: 'Оперативная память', description: '5 гб'},
-        {id: 1, title: 'Камера', description: '12 мп'},
-        {id: 1, title: 'Процессор', description: 'Seleron4'},
-        {id: 4, title: 'Кол-во ядер', description: '2'},
-        {id: 5, title: 'Акамулятор', description: '4000'}
-    ]
+const DevicePage = observer(() => {
+    const [device, setDevice] = useState({info: []})
+    const {id} = useParams()
+    useEffect(() => {
+        fetchOneDevices(id).then(data => setDevice(data))
+    }, [])
+
     return (
         <div>
             <Container>
                 <Row className="mt-3">
                     <Col md={4} >
-                        <Image width={300} height={300} src={device.Img}/>
+                        <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                     </Col>
                     <Col md={4}>
                         <Row className="d-flex flex-column align-items-center">
@@ -54,7 +50,7 @@ const DevicePage = () => {
                 </Row>
                 <Row className="d-flex flex-column m-5">
                     <h1>Характеристики:</h1>
-                    {description.map((info,index) =>
+                    {device.info.map((info,index) =>
                         <Row
                             style={{background: index % 2 === 0 ? 'lightgray' : 'transparent'}}
                             key={info.id}
@@ -66,6 +62,6 @@ const DevicePage = () => {
             </Container>
         </div>
     );
-};
+});
 
 export default DevicePage;

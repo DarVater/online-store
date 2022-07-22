@@ -62,8 +62,11 @@ class DeviceController{
         return res.json(devices)
     }
 
-    async getOne(req, res) {
+    async getOne(req, res, next) {
         const {id} = req.params
+        if  (id === 'undefined') {
+            return next(ApiError.bedRequest('Не указан id'))
+        }
         const device = await Device.findOne(
             {
                 where: {id},

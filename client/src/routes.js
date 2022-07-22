@@ -14,6 +14,14 @@ export const authRoutes = [
         path: BASKET_ROUTE,
         Component: Basket
     },
+    {
+        path: SHOP_ROUTE,
+        Component: Shop
+    },
+    {
+        path: DEVICE_ROUTE + '/:id',
+        Component: DevicePage
+    },
 ]
 
 export const publicRoutes = [

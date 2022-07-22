@@ -5,7 +5,6 @@ import UserStore from "./stope/UserStore";
 import DeviceStore from "./stope/DeviceStore";
 
 export const Context = createContext(null)
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 

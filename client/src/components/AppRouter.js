@@ -4,11 +4,11 @@ import {authRoutes, publicRoutes} from "../routes";
 import Auth from "../pages/Auth";
 import Shop from "../pages/Shop";
 import {Context} from "../index";
+import {observer} from "mobx-react-lite";
 
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
     const {user} = useContext(Context)
-    console.log(user)
     return (
         user.isAuth
             ?
@@ -36,6 +36,6 @@ const AppRouter = () => {
                 <Route path="*" element={<Auth/>} />
             </Routes>
     );
-};
+});
 
 export default AppRouter;

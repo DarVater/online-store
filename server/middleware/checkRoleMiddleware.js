@@ -14,9 +14,8 @@ module.exports = function (role) {
             }
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
             console.log(decoded)
-            console.log(decoded.role)
-            console.log(111111)
-            console.log( role)
+            console.log(token)
+            console.log('decoded.role !== role', decoded.role ,decoded.role !== role, role)
             if (decoded.role !== role) {
                 return res.status(403).json({message: NOT_ALLOWED})
             }
