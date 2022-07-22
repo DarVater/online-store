@@ -53,7 +53,7 @@ class DeviceController{
             devices = await  Device.findAndCountAll(
                 {
                     where:query_where,
-                    lim,
+                    limit: lim,
                     offset
                 }
             )
